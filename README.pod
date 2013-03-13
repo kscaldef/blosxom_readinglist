@@ -1,0 +1,93 @@
+=head1 NAME
+
+Blosxom Plug-in: readinglist
+
+=head1 SYNOPSIS
+
+Allows the creation of lists for reading in progress, recently completed,
+and queued.  Creates the following variables which may be inserted in
+your templates:
+
+  * $readinglist::recent
+  * $readinglist::queued
+  * $readinglist::current
+
+Books are tracked as normal bloxsom entries, with meta- variables for
+additional information.  Ex:
+
+  The Confusion
+  meta-title: The Confusion
+  meta-author: Neal Stephenson
+  meta-isbn: 0060523867
+  ... Your review (optional) ...
+
+If a review is present, then a normal blosxom entry will be generated from
+file, as well as it being included in the reading list.  Otherwise, the file
+will be removed from the entries list (i.e., it will appear in the reading
+list, but not in the main blog.)
+
+=head1 VERSION
+
+0.01
+
+=head1 DEPENDENCIES
+
+Requires the "meta" plugin
+
+=head1 Customization
+
+=head2 Configuration variables
+
+C<$base_dir>, C<$queued_dir>, C<$current_dir>, C<$completed_dir> can be
+modified to control which directories store the data files for books.  The
+defaults are $bloxsom::datadir/books/{in_queue,current,completed}.
+
+C<$num_queued>, C<$num_current>, C<$num_recent> specify the maximum
+number of books to display in each category.  Setting these to C<undef>
+indicated no limit.  The defaults are 5, undef, and 5, respectively.
+
+C<$amazon_id> can be changed to your Amazon Associates ID, or you can
+express your eternal gratitude to me by leaving it as it is ;-)
+
+C<$debug_level> can be set to a value between 0 and 5; 0 will output
+no debug information, while 5 will be very verbose.  The default is 2,
+and should be changed after you've verified the plugin is working
+correctly.
+
+=head2 Templates
+
+You can customize the HTML that is produced for each list using the
+templates: C<readinglist.head.flavour>, C<readinglist.book.flavour>,
+C<readinglist.foot.flavour>.
+
+=head1 AUTHOR
+
+Kevin Scaldeferri (kevin+blosxom at scaldeferri dot com)
+L<http://kevin.scaldeferri.com/blog/>
+
+=head1 BUGS
+
+Probably; address bug reports and comments to me or to the Blosxom
+mailing list L<http://www.yahoogroups.com/groups/blosxom>.
+
+=head1 TODO
+
+=over
+
+=item * Provide a link to the review from the list
+
+=item * Make list of lists to track configurable?
+
+=back
+
+=head1 LICENSE
+
+readinglist Blosxom Plug-in
+Copyright 2005, Kevin Scaldeferri
+
+This code is released under the same license as Perl, namely the Artistic
+License: L<http://www.perl.com/pub/a/language/misc/Artistic.html>.
+(Note that this is different from the license which Blosxom is distributed
+under.)
+
+
